@@ -1,0 +1,29 @@
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+h4 , h2 , p{
+  padding: 0;
+  margin: 0;
+}
+
+.post-card {
+  padding: 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.user-container{
+  
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  height: 300px;
+  /* background-color: #282c34; */
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
