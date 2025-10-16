@@ -37,11 +37,20 @@
   }
 }
 
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 .card {
   /* border: 1px solid; */
   padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 20px;
+  height: 200px;
+  width: 80%;
 }
 
 .input-field {
@@ -57,5 +66,6 @@
   padding: 10px 20px;
   border-radius: 10px;
   margin: 5px;
+
 }
 
