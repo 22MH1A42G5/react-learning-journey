@@ -1,14 +1,25 @@
-import React from 'react';
+import React , {useEffect, useState} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter , Routes , Route , useParams} from "react-router-dom";
+import {BrowserRouter , Routes , Route , useParams , NavLink} from "react-router-dom";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const Home = () => {
+
+  const [posts , setPosts] = useState([]);
+  useEffect( () => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(data => (data.json()))
+    .then(data => setPosts(data))
+  } , [])
   return (
     <div>
-      <h1>Home Page</h1>
+      <div className='post-container'>
+        {posts.map((post) => (
+          <NavLink style={{display: "block"}} to = {`/post/${post.id}`}>{post.title}</NavLink>
+          ))}
+      </div>
     </div>
   )
 }
@@ -39,10 +50,29 @@ const Settings = () => {
 const SayUser = () => {
   const params = useParams();
   console.log("params" , params);
-
   return (
     <div>
       <h1> Your Name is {params.userName}</h1>
+    </div>
+  )
+}
+
+const PostPage = () => {
+  const params = useParams();
+  const [data , setData] = useState(null);
+  console.log("params" ,params);
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`)
+    .then((data) => data.json())
+    .then((data) => setData(data));
+  } , [])
+
+  if(data === null) return <p>Loading...</p>
+  return (
+    <div>
+      <h1>{data.title}</h1>
+      <p>{data.body}</p>
     </div>
   )
 }
@@ -53,6 +83,9 @@ root.render(
       <Routes>
         <Route path = "/" element = {<Home />} />
         <Route path = "/about" element = {<About />} />
+
+        <Route path = "/post/:postId" element = { <PostPage />}/>
+
         <Route path = "/account/profile" element = {<Profile />} />
 
         <Route path="/user/:userName" element = {<SayUser />} />
