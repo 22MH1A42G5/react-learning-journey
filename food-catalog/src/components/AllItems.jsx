@@ -6,6 +6,7 @@ import './Card.css'
 
 const AllItems = () => {
     const allItems = getData();
+    console.log(allItems);
     // console.log(items)
     return (
         <>
@@ -13,7 +14,7 @@ const AllItems = () => {
         <div className="big-container">
             {
                 allItems.items.map((item , index) => {
-                    return (<Card title = {item.strCategory} image1 = {item.strCategoryThumb} />)
+                    return (<Card id = {item.idCategory} title = {item.strCategory} image1 = {item.strCategoryThumb} visible = {true} />)
                 })
             }
         </div>

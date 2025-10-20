@@ -8,7 +8,9 @@ export const getData = () => {
 }
 export const ItemsProvider = (props) => {
     const [items , setItems] = useState([]);
-
+    const [favs , setFavs] = useState([]);
+    const [isLoved , setIsLoved] = useState(Array(14).fill(false));
+    // console.log(isLoved);
     const fetchData = async () => {
         const response = await getAllItems();
         console.log(response);
@@ -16,7 +18,7 @@ export const ItemsProvider = (props) => {
     }
     useEffect( () =>{ fetchData()} , []);
     return (
-        <ItemsContext.Provider value = {{items , setItems}}>
+        <ItemsContext.Provider value = {{items , setItems , favs , setFavs , isLoved , setIsLoved}}>
             {props.children}
         </ItemsContext.Provider>
     )
