@@ -9,7 +9,12 @@ const SignIn = () => {
     const [password , setPassword] = useState('');
     const signInUser = () => {
         signInWithEmailAndPassword(auth , email , password)
-        .then((value) => console.log("login Sucess" , value))
+        .then((value) => 
+            {
+                console.log("login Sucess" , value);
+                alert("Logged In");
+            }
+        )
         .catch((err) => console.log("Error" , err));
     }
 
