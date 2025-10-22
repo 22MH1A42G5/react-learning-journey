@@ -6,6 +6,13 @@ import { getDatabase ,set , ref } from 'firebase/database'
 const GoogleProvider = new GoogleAuthProvider();
 
 const firebaseConfig = {
+  apiKey: "AIzaSyAahHZBMoPR_uggh9txFcVcoAq5ZPQqhyY",
+  authDomain: "app-b9260.firebaseapp.com",
+  databaseURL: "https://app-b9260-default-rtdb.firebaseio.com",
+  projectId: "app-b9260",
+  storageBucket: "app-b9260.firebasestorage.app",
+  messagingSenderId: "915585003629",
+  appId: "1:915585003629:web:d2f54b26764d6c995c4f64",
 };
 
 export const useFirebase = () => useContext(FirebaseContext)
