@@ -6,7 +6,11 @@ function App() {
   const firebase = useFirebase();
   const [email , setEmail] = useState('');
   const [password , setPassword] = useState('');
-  console.log(firebase);
+
+  const putDataNew = () => {
+    firebase.putData('grandfather/father/child' , {name:"sriram" , id : 1});
+  }
+  // console.log(firebase);
   if(firebase.user === null){
     return (
       <div>
@@ -21,6 +25,7 @@ function App() {
         </button>
         <h1>Signin With Google</h1>
         <button onClick={e => firebase.signUpWithGoogle()}>With Google</button>
+        <button onClick={putDataNew}>Trigger</button>
       </div>
     )
   }
