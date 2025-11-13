@@ -1,0 +1,27 @@
+app.components.ts
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  isBordered = true;
+}
+
+
+app.component.html
+<div [ngClass]="{bordered: isBordered}">
+Border {{ isBordered ? "ON" : "OFF" }}
+</div>
+
+app.component.css
+.bordered {
+  border: 1px dashed black;
+  background-color: #eee;
+}
