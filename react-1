@@ -25,3 +25,49 @@ app.component.css
   border: 1px dashed black;
   background-color: #eee;
 }
+
+
+
+app.component.ts
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule],
+  styleUrls: ['./app.component.css'],
+  templateUrl: './app.component.html',
+})
+export class AppComponent {
+  data!: Observable<number>;
+  myArray: number[] = [];
+  errors!: boolean;
+  finished!: boolean;
+  fetchData(): void {
+    this.data = new Observable((observer) => {
+      setTimeout(() => {
+        observer.next(11);
+      }, 1000);
+      setTimeout(() => {
+        observer.next(22);
+      }, 2000);
+      setTimeout(() => {
+        observer.complete();
+      }, 3000);
+    });
+    this.data.subscribe(
+      (value) => this.myArray.push(value),
+      (error) => (this.errors = true),
+      () => (this.finished = true)
+    );
+  }
+}
+
+app.component.html
+<b> Using Observables!</b>
+<h6 style="margin-bottom: 0">VALUES:</h6>
+<div *ngFor="let value of myArray">{{ value }}</div>
+<div style="margin-bottom: 0">ERRORS: {{ errors }}</div>
+<div style="margin-bottom: 0">FINISHED: {{ finished }}</div>
+<button style="margin-top: 2rem" (click)="fetchData()">Fetch Data</button>
